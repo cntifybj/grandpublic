@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller; // Importer la classe Controller
 use App\Models\User;
+use App\Rules\Recaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Importer le modèle User
 
@@ -22,7 +23,7 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => ['required', new Recaptcha],
         ]);
 
         // Tentative de connexion avec les informations fournies

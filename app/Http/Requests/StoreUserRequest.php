@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Recaptcha;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
@@ -27,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
             'terms' => 'accepted',
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => ['required', new Recaptcha],
         ];
     }
 }

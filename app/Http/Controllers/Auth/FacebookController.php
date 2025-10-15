@@ -23,14 +23,21 @@ class FacebookController extends Controller
             $facebookUser = Socialite::driver('facebook')->stateless()->user();
             $user = User::where('email', $facebookUser->email)->first();
 
-            if (!$user)
+            if (!$user) {
+                $nameParts = explode(' ', $facebookUser->name);
                 $user = User::create([
-                    'first_name' => $facebookUser->name,
+                    'first_name' => $nameParts[0],
+                    'last_name' => $nameParts[1] ?? '',
                     'email' => $facebookUser->email,
-                    'facebook_id' => $user->id,
+                    'facebook_id' => $facebookUser->id,
                     'password' => Hash::make(Str::random(16)),
                     'terms_accepted' => true
                 ]);
+            } else {
+                $user->update([
+                    'facebook_id' => $facebookUser->id,
+                ]);
+            }
 
 
             Auth::login($user);

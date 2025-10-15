@@ -46,13 +46,13 @@
         integrity="sha512-zsP0/L3kc5mMF0ESqN0PcdY1mfYhT1Zryr24E+OB5Q7l+QiFybS2TVB9lqZ1diK8F+0EmC5f4RY6clSCwi9uqg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @livewireStyles
     @yield('page_css')
 
     @yield('styles')
 </head>
 
-<body class="overflow-x-hidden antialiased tracking-tight text-gray-500 text-base h-full bg-white dark:bg-gray-900">
+<body
+    class="overflow-x-hidden antialiased tracking-tight text-gray-500 text-base h-full bg-white dark:bg-gray-900">
 
     <style>
         html,
@@ -158,7 +158,6 @@ h3 {
 
     <main>
         @yield('content')
-        @livewireScripts
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             function getCurrentTimeInMinutes() {
