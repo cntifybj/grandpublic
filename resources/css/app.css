@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/Gotham-Regular.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Regular.woff') format('woff'),
+        url('assets/fonts/Gotham-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/Gotham-Bold.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Bold.woff') format('woff'),
+        url('assets/fonts/Gotham-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

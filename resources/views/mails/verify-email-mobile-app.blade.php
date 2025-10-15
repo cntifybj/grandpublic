@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification d'email</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-red': '#ee1a3b',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="max-w-2xl mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-xl p-8 mt-10">
+            <!-- Logo/Header -->
+            <div class="text-center mb-8">
+                <img src="https://grandpublic.online/mygp-images/logo-gp.png" alt="Logo grand public"
+                    class="h-11 w-11 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-gray-800">Vérifiez votre adresse email</h1>
+            </div>
+
+            <!-- Content -->
+            <div class="text-center mb-8">
+                <p class="text-gray-600 mb-6">
+                    Merci de vous être inscrit ! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en
+                    cliquant sur le bouton ci-dessous ? Si vous n'avez pas créé de compte, vous pouvez ignorer cet
+                    email.
+                </p>
+            </div>
+
+            <div class="p-5 flex justify-center">
+                <!-- Carrés -->
+                @for ($i = 0; $i < strlen($unique_verification_code); $i++)
+                    <div
+                        class="w-20 h-20 bg-white border-2 border-black rounded-md flex items-center justify-center m-2 text-xl font-bold">
+                        {{ $unique_verification_code[$i] }}
+                    </div>
+                @endfor
+            </div>
+
+
+        </div>
+
+        <!-- Additional Info -->
+        <div class="text-center mt-8 text-sm text-gray-500">
+            <p>© 2024 Max Magic. Tous droits réservés.</p>
+
+        </div>
+    </div>
+</body>
+
+</html>

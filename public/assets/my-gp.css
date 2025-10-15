@@ -1,0 +1,242 @@
+/* ESPACE COMMENTAIRE ET LIKES VIDEOS */
+@font-face {
+    font-family: 'Gotham';
+    src: url('/fonts/gotham/Gotham-Regular.woff2') format('woff2'),
+         url('/fonts/gotham/Gotham-Regular.woff') format('woff'),
+         url('/fonts/gotham/Gotham-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('/fonts/gotham/Gotham-Bold.woff2') format('woff2'),
+         url('/fonts/gotham/Gotham-Bold.woff') format('woff'),
+         url('/fonts/gotham/Gotham-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Ajoutez d'autres styles si vous avez plusieurs variations de la police */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #3B82F6;
+    --secondary-color: #ee1a3b;
+    --background-light: #F3F4F6;
+    --background-dark: #1F2937;
+    --text-light: #374151;
+    --text-dark: #F9FAFB;
+}
+
+
+#video-container {
+
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#video-container:hover {
+    transform: scale(1.02);
+}
+
+#video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#video-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#video-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+#video-stats {
+    font-size: 0.875rem;
+    color: black;
+}
+
+#like-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#like-button:hover {
+    transform: scale(1.1);
+}
+
+#like-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+#like-icon.liked {
+    fill: var(--secondary-color);
+    transform: scale(1.2);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.action-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #2563EB;
+    transform: translateY(-2px);
+}
+
+#comment-form-container,
+#comments-container {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+#comment-form-container.hidden,
+#comments-container.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #D1D5DB;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #ee1a3b;
+    transform: translateY(-2px);
+}
+
+.comment {
+    color: black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.like-count {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    color: #6B7280;
+    /* Couleur grise pour le texte */
+}
+
+
+.comment:hover {
+    transform: translateY(-2px);
+}
+
+.comment-author {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.comment-text {
+    margin-bottom: 0.5rem;
+}
+
+.comment-like {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+
+}
+
+.comment-like:hover {
+    color: #2563EB;
+}
+
+
+/* Bouton de soumission */
+.submit-button {
+    width: 80%;
+    /* Réduit la largeur à 80% de son conteneur */
+    max-width: 200px;
+    /* Optionnel : largeur maximale */
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    /* Réduit la taille du bouton */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    /* Centre le bouton dans le conteneur */
+}
+
+.submit-button:hover {
+    background-color: #ee1a3b;
+}
+
+
+/* public/css/style.css */
+
+
+
+.active a {
+    color: white; /* Couleur de texte pour l'élément actif */
+    font-weight: bold; /* Mettre le texte en gras */
+    border-bottom: 3px solid white; /* Bordure en bas pour indiquer l'élément actif */
+}
+
+/* Désactiver le surlignage sur les éléments actifs */
+.no-hover-effect a:hover::after {
+    transform: scaleX(0) !important;
+    transition: none !important;
+}
