@@ -1,10 +1,21 @@
-{{-- resources/views/videos/opinion.blade.php --}}
-
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <main id="main-content" class="grow lg:pt-0">
-        @livewire('video-filter', ['videoCategory' => 'opinion'])
+        <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('video-filter', ['videoCategory' => 'events']);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-4163368356-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
     </main>
 
     <style>
@@ -104,4 +115,6 @@
             color: white;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\projects\grandpublic\resources\views/pages/events.blade.php ENDPATH**/ ?>

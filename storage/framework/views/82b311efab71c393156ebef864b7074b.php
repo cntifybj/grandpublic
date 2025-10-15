@@ -46,13 +46,14 @@
         integrity="sha512-zsP0/L3kc5mMF0ESqN0PcdY1mfYhT1Zryr24E+OB5Q7l+QiFybS2TVB9lqZ1diK8F+0EmC5f4RY6clSCwi9uqg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::styles(); ?>
+
     <?php echo $__env->yieldContent('page_css'); ?>
 
 
 </head>
 
-<body
-    class="overflow-x-hidden antialiased tracking-tight text-gray-500 text-base h-full bg-white dark:bg-gray-900">
+<body class="overflow-x-hidden antialiased tracking-tight text-gray-500 text-base h-full bg-white dark:bg-gray-900">
 
     <style>
         html,
@@ -158,6 +159,8 @@ h3 {
 
     <main>
         <?php echo $__env->yieldContent('content'); ?>
+        <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             function getCurrentTimeInMinutes() {
