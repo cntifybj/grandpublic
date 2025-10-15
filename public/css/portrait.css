@@ -1,0 +1,131 @@
+@-moz-document url-prefix() {
+    h1.text-[#ee1a3b] {
+        padding-top: 50px;
+        /* Espace supplémentaire pour Firefox */
+    }
+}
+
+.slide-container {
+    position: relative;
+    overflow: hidden;
+    height: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Centrage des images */
+    align-items: center;
+    /* Centrage vertical */
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    background-position: center;
+    background-size: contain;
+    /*Permet de voir toute l'image sans la couper */
+    background-repeat: no-repeat;
+    /*Empêche les répétitions de l'image */
+    margin-top: -20px;
+}
+
+/* Media Queries pour des tailles adaptées */
+@media (max-width: 768px) {
+    .slide-container {
+        height: 100px;
+        /* Plus de hauteur pour mobiles */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .slide-container {
+        height: 100px;
+        /* Hauteur intermédiaire pour tablettes */
+    }
+}
+
+@media (min-width: 1025px) {
+    .slide-container {
+        height: 150px;
+        /* Conserve une hauteur réduite sur grands écrans */
+    }
+}
+
+.active {
+    opacity: 1 !important;
+    /* Augmente l'opacité de l'élément sélectionné */
+    color: #ee1a3b !important;
+    /* Met en surbrillance la couleur pour l'élément actif */
+    border-bottom: 3px solid #ee1a3b;
+    /* Ajoute une ligne en bas pour souligner */
+}
+
+@-moz-document url-prefix() {
+    .firefox-bottom-space {
+        top: 70px;
+        /* Ajuste la valeur selon tes besoins */
+    }
+}
+
+/* Cibler Firefox uniquement */
+@-moz-document url-prefix() {
+    #videoGrid {
+        margin-top: 40px !important;
+        /* Pousse vers le bas (ajuste la valeur selon tes besoins) */
+    }
+}
+
+@supports (-moz-appearance: none) {
+    h1.titre {
+        margin-top: 50px;
+        /* Ajuste l'espacement en haut */
+        margin-bottom: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(238, 26, 59, 0.1);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(238, 26, 59, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(238, 26, 59, 0);
+    }
+}
+
+#search-bar:focus {
+    animation: pulse 2s infinite;
+}
+
+/* Cibler Firefox uniquement */
+@-moz-document url-prefix() {
+    #videoGrid {
+        margin-top: 40px !important;
+        /* Pousse vers le bas (ajuste la valeur selon tes besoins) */
+    }
+}
+
+/* Pour les écrans de 1023px ou moins (taille de la tablette et du mobile) */
+@media (max-width: 1023px) {
+    #videoGrid {
+        margin-top: 50px;
+        /* Pousse la grille de vidéos vers le bas */
+    }
+}
+
+/* Styles pour améliorer la visibilité de la page active */
+nav[aria-label="Pagination"] span[aria-current="page"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ee1a3b;
+    padding: 0.150rem;
+    color: white;
+    border-radius: 0.375rem;
+    /**font-weight: 500;**/
+}

@@ -75,10 +75,30 @@ class HomeController extends Controller
             'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }
-    public function portrait()
+    public function portrait(Request $request)
     {
+        $query = Video::where('category', 'portrait');
+
+        switch ($request->get('filter')) {
+            case 'recent':
+                $query->orderByDesc('publication_date');
+                break;
+            case 'old':
+                $query->orderBy('publication_date');
+                break;
+            case 'recommended':
+                $query->inRandomOrder();
+                break;
+            case 'most-liked':
+                $query->withCount('likes')->orderByDesc('likes_count');
+                break;
+            default:
+                $query->orderByDesc('publication_date');
+                break;
+        }
+
         return view('pages.portrait', [
-            'videos' => Video::where('category', 'portrait')->orderByDesc('publication_date')->paginate(3),
+            'videos' => $query->paginate(config('app.videos_per_page', 9)),
             'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }

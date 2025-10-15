@@ -48,7 +48,7 @@
 
     @yield('page_css')
 
-
+    @yield('styles')
 </head>
 
 <body
@@ -238,6 +238,8 @@ h3 {
     <script src="assets/js/yt1/init.js"></script>
 
     @yield('page_js')
+
+    @yield('scripts')
 </body>
 
 </html>

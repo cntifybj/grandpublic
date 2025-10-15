@@ -19,37 +19,29 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // Validation des données d'entrée
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
-        // Vérifier si l'utilisateur existe avec cet email
-        $user = User::where('email', $request->email)->first();
-
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            return back()->withErrors([
-                'email' => 'Aucun compte trouvé avec cette adresse e-mail.',
-            ]);
+        // Tentative de connexion avec les informations fournies
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->intended(); // Rediriger vers l'URL souhaitée
         }
 
-        if (!$user->email_verified_at) {
+        $user = User::where('email', $request->email)->first();
+        if ($user && !$user->hasVerifiedEmail()) {
             return back()->withErrors([
                 'email' => 'Vous n\'avez pas encore validé votre compte.',
-            ]);
-        }
-
-        // Tentative de connexion avec les informations fournies
-        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            return redirect()->intended(); // Rediriger vers l'URL souhaitée
+            ])->onlyInput('email');
         }
 
         // Si les identifiants sont incorrects
         return back()->withErrors([
-            'password' => 'Le mot de passe est incorrect.',
-        ]);
+            'email' => 'Les informations d\'identification fournies ne correspondent pas à nos enregistrements.',
+        ])->onlyInput('email');
     }
 
     public function subPay()
