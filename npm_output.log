@@ -1,0 +1,15 @@
+
+> dev
+> vite
+
+
+  VITE v4.5.5  ready in 560 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+  LARAVEL v10.48.28  plugin v0.8.1
+
+  ➜  APP_URL: undefined
+1:33:39 PM [vite] full reload resources/views/pages/portrait.blade.php
+1:33:39 PM [vite] full reload resources/views/layouts/app.blade.php

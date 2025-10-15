@@ -126,6 +126,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'videos_per_page' => env('VIDEOS_PER_PAGE', 9),
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

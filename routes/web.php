@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BackOffice\AuthController as BackOfficeAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackOffice\CommentController as BackOfficeCommentController;
@@ -30,7 +31,11 @@ use App\Http\Controllers\BackOffice\UserMessageController;
 use App\Http\Controllers\CommentController;
 
 
-Route::get('/verify_email/{token}', [RegisterController::class, 'verify_email'])->name('verify-email');
+Route::get('/email/verify', [VerificationController::class, 'show'])->middleware('auth')->name('verification.notice');
+Route::post('/email/verification-notification', [VerificationController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+
 Route::get('/mentions-legales', [HomeController::class, 'mentionsLegales'])->name('mentions.legales');
 Route::get('/politique-confidentialite', [HomeController::class, 'politiqueConfidentialite'])->name('politique.confidentialite');
 Route::get('/conditions-utilisation', [HomeController::class, 'conditionsUtilisation'])->name('conditions.utilisation');
@@ -126,7 +131,7 @@ Route::middleware('auth')->post('/payment', [PaymentController::class, 'store'])
 /**
  * Routes protégées par l'authentification
  */
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     // Route Mon compte
     Route::get('/account', [AccountController::class, 'showAccount'])->name('account');

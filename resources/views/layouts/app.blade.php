@@ -49,7 +49,7 @@
     @livewireStyles
     @yield('page_css')
 
-
+    @yield('styles')
 </head>
 
 <body class="overflow-x-hidden antialiased tracking-tight text-gray-500 text-base h-full bg-white dark:bg-gray-900">
@@ -239,6 +239,8 @@ h3 {
     <script src="assets/js/yt1/init.js"></script>
 
     @yield('page_js')
+
+    @yield('scripts')
 </body>
 
 </html>
