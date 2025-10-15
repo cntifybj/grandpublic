@@ -62,73 +62,32 @@ class HomeController extends Controller
     // Afficher la page des vidéos
     public function opinion()
     {
-        $advisories = Advisory::where('position', 'slide-category-page')->where('visible', 1)->get();
-
-        $advisoriesImagesUrl = [];
-
-        if ($advisories->count() > 0) {
-            foreach ($advisories as $advisory) {
-                $advisoriesImagesUrl[] = Storage::url($advisory->file);
-            };
-        }
-
         return view('pages.opinion', [
             'videos' => Video::where('category', 'opinion')->orderByDesc('publication_date')->paginate(3),
-
-            'advisoriesImagesUrl' => $advisoriesImagesUrl,
+            'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }
 
     public function events()
     {
-        $advisories = Advisory::where('position', 'slide-category-page')->where('visible', 1)->get();
-
-        $advisoriesImagesUrl = [];
-
-        if ($advisories->count() > 0) {
-            foreach ($advisories as $advisory) {
-                $advisoriesImagesUrl[] = Storage::url($advisory->file);
-            };
-        }
-
         return view('pages.events', [
             'videos' => Video::where('category', 'events')->orderByDesc('publication_date')->paginate(3),
-            'advisoriesImagesUrl' => $advisoriesImagesUrl,
+            'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }
     public function portrait()
     {
-        $advisories = Advisory::where('position', 'slide-category-page')->where('visible', 1)->get();
-
-        $advisoriesImagesUrl = [];
-
-        if ($advisories->count() > 0) {
-            foreach ($advisories as $advisory) {
-                $advisoriesImagesUrl[] = Storage::url($advisory->file);
-            };
-        }
-
         return view('pages.portrait', [
             'videos' => Video::where('category', 'portrait')->orderByDesc('publication_date')->paginate(3),
-            'advisoriesImagesUrl' => $advisoriesImagesUrl,
+            'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }
 
     public function insolite()
     {
-        $advisories = Advisory::where('position', 'slide-category-page')->where('visible', 1)->get();
-
-        $advisoriesImagesUrl = [];
-
-        if ($advisories->count() > 0) {
-            foreach ($advisories as $advisory) {
-                $advisoriesImagesUrl[] = Storage::url($advisory->file);
-            };
-        }
-
         return view('pages.insolite', [
             'videos' => Video::where('category', 'insolite')->orderByDesc('publication_date')->paginate(3),
-            'advisoriesImagesUrl' => $advisoriesImagesUrl,
+            'advisoriesImagesUrl' => $this->getAdvisories(),
         ]);
     }
 
@@ -279,5 +238,19 @@ class HomeController extends Controller
         }
 
         return 'N/A';
+    }
+
+    private function getAdvisories()
+    {
+        $advisories = Advisory::where('position', 'slide-category-page')->where('visible', 1)->get();
+        $advisoriesImagesUrl = [];
+
+        if ($advisories->count() > 0) {
+            foreach ($advisories as $advisory) {
+                $advisoriesImagesUrl[] = Storage::url($advisory->file);
+            }
+        }
+
+        return $advisoriesImagesUrl;
     }
 }
